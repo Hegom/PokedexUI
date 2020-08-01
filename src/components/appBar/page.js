@@ -25,7 +25,8 @@ function Page(props) {
                     suggestions={suggestions}
                     onChangeText={onChangeText}
                     onChangeSelection={onChangeSelection}
-                />                
+                />      
+                <AccountCircle />   
             </Toolbar>
         </AppBar>
     );

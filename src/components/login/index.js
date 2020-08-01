@@ -14,7 +14,7 @@ import './style.css';
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: "", email: "borrar@gmail.com" };
+        this.state = { fullName: "", email: "borrar@gmail.com" };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -23,11 +23,20 @@ class Login extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        // if (this.state.username == 'admin@littech.in' && this.state.password == 'secret') {
-        //     this.props.history.push("/home");
-        // } else {
-        //     alert('Incorrect Credntials!');
-        // }
+        const data = new FormData(event.target);
+        const jsonbody = JSON.stringify({fullName: this.state.fullName, email: this.state.email});
+
+        (async () => {
+            const rawResponse = await fetch('http://localhost:5001/api/trainers/', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: jsonbody
+            });
+            const content = await rawResponse.json();
+          })();
 
         this.props.history.push("/results");
     }
@@ -59,7 +68,7 @@ class Login extends React.Component {
                             >
                                 <Grid item>
                                     <Typography component="h1" variant="h5">
-                                        Sign in
+                                        Sign on
                                     </Typography>
                                 </Grid>
                                 <Grid item>
@@ -70,9 +79,9 @@ class Login extends React.Component {
                                                     type="Login"
                                                     placeholder="Full Name"
                                                     fullWidth
-                                                    name="username"
+                                                    name="fullName"
                                                     variant="outlined"
-                                                    value={this.state.username}
+                                                    value={this.state.fullName}
                                                     onChange={(event) =>
                                                         this.setState({
                                                             [event.target.name]: event.target.value,

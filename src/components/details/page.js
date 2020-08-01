@@ -15,7 +15,7 @@ function Page(props) {
         itemId
     } = props;
 
-    const [poke, setPoke] = React.useState(null);
+    const [poke, setPoke] = useState(null);
 
     useEffect(() => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${itemId}/`)
