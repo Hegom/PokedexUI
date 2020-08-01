@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CardMedia from '@material-ui/core/CardMedia';
 import AppBar from '../appBar';
 import Button from '@material-ui/core/Button';
 import './style.css';
@@ -36,21 +36,47 @@ function Page(props) {
                 >
                     {poke ?
                         <Fragment>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {poke.name}
-                            </Typography>
-                            <div
-                                className="item-image"
-                                style={{
-                                    backgroundImage: `url(${poke.sprites.front_default})`,
-                                }}
+                            <CardMedia
+                                className="card-media"
+                                image={poke.sprites.front_default}
+                                title={poke.name}
                             />
-                            <Typography gutterBottom component="p" className="content">
-                                {poke.types[0].type.name}
+                            <Typography gutterBottom component="h4" >
+                                Id: {poke.id}
                             </Typography>
+                            <Typography gutterBottom component="h5" >
+                                Name: {poke.name}
+                            </Typography>
+                            <Typography gutterBottom component="h5" >
+                                Type: {poke.types.map(element =>
+                                element.type.name + ' '
+                                )}
+                            </Typography>
+                            <Typography gutterBottom component="h5" >
+                                Heigh: {poke.height} Cm
+                            </Typography>
+                            <Typography gutterBottom component="h5" >
+                                Weight: {poke.weight} Kg
+                            </Typography>
+                            <Typography gutterBottom component="h5" >
+                                Movements: 
+                                <ul>{poke.moves.map(element =>
+                                    <li>
+                                        {element.move.name}  
+                                    </li>
+                                    )}
+                                </ul>
+                            </Typography>                           
                         </Fragment>
                         :
-                        <CircularProgress className="item-loader" />
+                        <Fragment>
+                            <Typography gutterBottom variant="h6" component="content">
+                                Pokemon {itemId} not found,
+                            </Typography>
+                            <Typography gutterBottom variant="h6" component="content">
+                                please try with the exact name or id
+                            </Typography>
+                        </Fragment>
                     }
                     <Button
                         color="primary"

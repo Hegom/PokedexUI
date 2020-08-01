@@ -4,10 +4,10 @@ import items from '../../data/items';
 
  const defaultState = [];
   
-//  const [result, setResult] = React.useState([]);
-//     const [poke, setPoke] = React.useState([]);
-//     const [load, setLoad] = React.useState('true');
-     const arr = [];
+//      const [result, setResult] = React.useState([]);
+//      const [poke, setPoke] = React.useState([]);
+//      const [load, setLoad] = React.useState('true');
+//      const arr = [];
 
 
 function reducer(state = defaultState, { type, payload }) {
@@ -36,7 +36,7 @@ function reducer(state = defaultState, { type, payload }) {
 //               },
 //             ));
 
-// return arr;
+//  return arr;
 
 
             // const pokem = PokeData();

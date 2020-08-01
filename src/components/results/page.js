@@ -7,11 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '../appBar';
 import './style.css';
-import { toUpper } from 'lodash';
 
 function Page(props) {
     const {
-        results,
+        // results,
         goTo,
         text
     } = props;    
@@ -31,12 +30,12 @@ function Page(props) {
                   setPoke(arr);
               }),
             ));
-        }, []);
-        
+        }, []); 
+
         console.log(text);
 
         if(text != null){        
-            goTo(`/details/${5}`);
+            goTo(`/details/${text}`);
         }
 
     return (
@@ -53,21 +52,20 @@ function Page(props) {
                             <Card
                                 className="card"
                                 onClick={() => goTo(`/details/${item.id}`)} >
-                                <CardActionArea>
-                                    
+                                <CardActionArea>                                    
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2" align="center">
-                                            {item.name}
+                                            {item.name.toUpperCase()}
                                         </Typography>
                                         <CardMedia
-                                        className="card-media"
-                                        image={item.sprites.front_default}
-                                        title={item.name}
-                                    />
+                                            className="card-media"
+                                            image={item.sprites.front_default}
+                                            title={item.name}
+                                        />
                                         <Typography component="p" align="center">
-                                        {item.types.map(element => 
-                                            element.type.name + ' '
-                                        )}
+                                            {item.types.map(element => 
+                                                element.type.name.toUpperCase() + ' '
+                                            )}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

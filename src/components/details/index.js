@@ -11,7 +11,6 @@ class Details extends Component {
     }    
 
     componentDidMount() {
-
         const {
             match: { params: { itemId } },
             findCurrentItem,
