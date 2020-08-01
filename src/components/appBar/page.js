@@ -9,7 +9,6 @@ import './style.css';
 function Page(props) {
     const {
         text,
-        // suggestions,
         onChangeText,
         onChangeSelection,
         onGoTo
@@ -23,7 +22,6 @@ function Page(props) {
                 </Typography>
                 <Search
                     text={text}
-                    // suggestions={suggestions}
                     onChangeText={onChangeText}
                     onChangeSelection={onChangeSelection}
                     onGoTo={onGoTo}

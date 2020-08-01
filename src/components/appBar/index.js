@@ -62,11 +62,9 @@ class IAppBar extends Component {
 }
 
 const mapStateToProps = state => ({
-    suggestions: state.suggestions,
 });
 
 const mapDispatchToProps = {
-    // findSuggestions,
     findResults,
 };
 

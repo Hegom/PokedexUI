@@ -1,16 +1,15 @@
 import { type as findCurrentItemType } from '../actions/findCurrentItem';
-import React, { Fragment, useEffect, useState } from 'react';
-import items from '../../data/items';
 
 const defaultState = [];
 
 function reducer(state = defaultState, { type, payload }) {
     switch (type) {
-        case findCurrentItemType: {  
-            if (!payload) {
-                return null;
-            } 
-            return items.find(n => n.id === payload);
+        case findCurrentItemType: { 
+            return null; 
+            // if (!payload) {
+            //     return null;
+            // } 
+            // return items.find(n => n.id === payload);
         }
         default:
             return state;
