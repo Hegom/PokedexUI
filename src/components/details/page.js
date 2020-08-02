@@ -11,19 +11,24 @@ function Page(props) {
     const {
         goTo,
         currentItem,
-        match,
-        itemId
+        item,
+        findItem,
+        itemId,
+        // currentItem: { sprites: { front_default } },
+        currentItem: { sprites},
     } = props;
 
-    const [poke, setPoke] = useState(null);
+    // console.log(currentItem);
 
-    useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${itemId}/`)
-            .then(results => results.json())
-            .then(data => {
-                setPoke(data);
-            });
-    }, []);
+    // const [poke, setPoke] = useState(null);
+
+    // useEffect(() => {
+    //     fetch(`https://pokeapi.co/api/v2/pokemon/${itemId}/`)
+    //         .then(results => results.json())
+    //         .then(data => {
+    //             setPoke(data);
+    //         });
+    // }, []);
 
     return (
         <Fragment>
@@ -34,33 +39,34 @@ function Page(props) {
                     elevation={1}
                     className="paper-container"
                 >
-                    {poke ?
+                    
+                    {currentItem.sprites ?
                         <Fragment>
                             <CardMedia
                                 className="card-media"
-                                image={poke.sprites.front_default}
-                                title={poke.name}
+                                image={currentItem.sprites.front_default}
+                                title={currentItem.name}
                             />
                             <Typography gutterBottom component="h4" >
-                                Id: {poke.id}
+                                Id: {currentItem.id}
                             </Typography>
                             <Typography gutterBottom component="h5" >
-                                Name: {poke.name}
+                                Name: {currentItem.name}
                             </Typography>
                             <Typography gutterBottom component="h5" >
-                                Type: {poke.types.map(element =>
+                                Type: {currentItem.types.map(element =>
                                 element.type.name + ' '
                                 )}
                             </Typography>
                             <Typography gutterBottom component="h5" >
-                                Heigh: {poke.height} Cm
+                                Heigh: {currentItem.height} Cm
                             </Typography>
                             <Typography gutterBottom component="h5" >
-                                Weight: {poke.weight} Kg
+                                Weight: {currentItem.weight} Kg
                             </Typography>
                             <Typography gutterBottom component="h5" >
                                 Movements: 
-                                <ul>{poke.moves.map(element =>
+                                <ul>{currentItem.moves.map(element =>
                                     <li>
                                         {element.move.name}  
                                     </li>

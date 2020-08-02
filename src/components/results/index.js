@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import Page from './page';
+import * as actionCreators from '../../redux/actions/findCurrentItem';
 
 class Results extends Component {
     constructor(props) {
@@ -9,19 +9,27 @@ class Results extends Component {
         this.goTo = this.goTo.bind(this);
     }
 
+    componentDidMount() {
+        const {
+            getAllPoke,            
+        } = this.props;
+        getAllPoke();
+    } 
+
     goTo(path) {
         this.props.history.push(path);
-    }
+    }    
 
     render() {
         const {
             text,
-            results,
+            list,
+            getAllPoke,
         } = this.props;
-
         return (
             <Page
-                results={results}
+                getAllPoke={getAllPoke}
+                results={list}
                 goTo={this.goTo}
                 text={text}
             />
@@ -29,10 +37,8 @@ class Results extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    results: state.results,
-});
+const mapStateToProps=(state)=>{
+    return state
+};
 
-export default withRouter(
-    connect(mapStateToProps)(Results)
-);
+export default connect (mapStateToProps, actionCreators)(Results);

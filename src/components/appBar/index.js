@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Page from './page';
 import findResults from '../../redux/actions/findResults';
+// import * as actionCreators from '../../redux/actions/findCurrentItem';
+
 
 class IAppBar extends Component {
     constructor(props) {
@@ -16,6 +18,13 @@ class IAppBar extends Component {
         this.onChangeSelection = this.onChangeSelection.bind(this);
         this.onGoTo = this.onGoTo.bind(this);
     }
+
+    // componentDidMount() {
+    //     const {
+    //         getAllPoke,            
+    //     } = this.props;
+    //     getAllPoke();
+    // } 
 
     onGoTo(path) {
         const {
@@ -31,6 +40,7 @@ class IAppBar extends Component {
 
     onChangeSelection(text) {
         const {
+            // getAllPoke,
             findResults,
             match,
             history,
@@ -39,6 +49,7 @@ class IAppBar extends Component {
         this.setState({ text });
 
         findResults(text);
+        // getAllPoke();
 
         if (match.path !== '/results') {
             history.push('/results');
@@ -60,6 +71,12 @@ class IAppBar extends Component {
         );
     }
 }
+
+// const mapStateToProps=(state)=>{
+//     return state
+// };
+
+// export default connect (mapStateToProps, actionCreators)(IAppBar);
 
 const mapStateToProps = state => ({
 });

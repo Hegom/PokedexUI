@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import Page from './page';
-import findCurrentItem from '../../redux/actions/findCurrentItem';
+import * as actionCreators from '../../redux/actions/findCurrentItem';
 
 class Details extends Component {
     constructor(props) {
@@ -13,10 +12,10 @@ class Details extends Component {
     componentDidMount() {
         const {
             match: { params: { itemId } },
-            findCurrentItem,
+            findItem,            
         } = this.props;
 
-        findCurrentItem(itemId);
+        findItem(itemId);
     } 
 
     goTo(path) {
@@ -26,12 +25,12 @@ class Details extends Component {
     render() {
         const {
             match: { params: { itemId } },
-            currentItem,
+            item
         } = this.props;
 
         return (
             <Page
-                currentItem={currentItem}
+                currentItem={item}
                 goTo={this.goTo}
                 itemId={itemId}
             />
@@ -39,15 +38,8 @@ class Details extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    results: state.results,
-    currentItem: state.currentItem,
-});
-
-const mapDispatchToProps = {
-    findCurrentItem,
+const mapStateToProps=(state)=>{
+    return state
 };
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(Details)
-);
+export default connect (mapStateToProps, actionCreators)(Details);

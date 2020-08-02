@@ -1,12 +1,12 @@
-import { createStore, combineReducers } from 'redux';
-import results from './reducers/results';
-import currentItem from './reducers/currentItem';
+// import { createStore, combineReducers } from 'redux';
+// import results from './reducers/results';
+// import currentItem from './reducers/currentItem';
 
-const reducer = combineReducers({
-    results,
-    currentItem,
-});
+// const reducer = combineReducers({
+//     results,
+//     currentItem,
+// });
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-export default store;
+// export default store;

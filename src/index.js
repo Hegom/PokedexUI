@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import store from './redux/store';
+import {createStore, applyMiddleware, compose} from 'redux';
+import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+import reducers from "./redux/reducers/index";
 import Results from './components/results';
 import Details from './components/details';
 import Login from './components/login';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducers,
+  composeEnhancer(applyMiddleware(thunk)),
+);
 
 const Root = (
     <Provider store={store}>
