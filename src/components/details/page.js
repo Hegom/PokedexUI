@@ -13,7 +13,7 @@ function Page(props) {
         currentItem,
         itemId,
     } = props;
-
+   
     return (
         <Fragment>
             <CssBaseline />
@@ -22,8 +22,7 @@ function Page(props) {
                 <Paper
                     elevation={1}
                     className="paper-container"
-                >
-                    
+                >                                   
                     {currentItem.sprites ?
                         <Fragment>
                             <CardMedia
@@ -48,6 +47,15 @@ function Page(props) {
                             <Typography gutterBottom component="h5" >
                                 Weight: {currentItem.weight} Kg
                             </Typography>
+                            <Typography gutterBottom component="h5" >                                
+                                Evolution Chain: 
+                                <ul>{currentItem.evolution_chain.map(element =>
+                                    <li>
+                                        {element.name}  
+                                    </li>
+                                    )}
+                                </ul>
+                            </Typography>    
                             <Typography gutterBottom component="h5" >
                                 Movements: 
                                 <ul>{currentItem.moves.map(element =>
@@ -56,7 +64,7 @@ function Page(props) {
                                     </li>
                                     )}
                                 </ul>
-                            </Typography>                           
+                            </Typography>       
                         </Fragment>
                         :
                         <Fragment>

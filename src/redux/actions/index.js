@@ -2,8 +2,24 @@ import axios from "axios";
 
 export function findItem(itemId) {
     return (dispatch) => {
+        var data = {};
+        var evoChain = [];
         return axios.get(`https://pokeapi.co/api/v2/pokemon/${itemId}/`).then((response) => {
-            dispatch(findCurrentItem(response.data));
+            data = response.data;
+            axios.get(response.data.species.url).then((response) => {
+                axios.get(response.data.evolution_chain.url)
+                .then(response => {
+                    var evoData = response.data.chain;
+                    do {       
+                        evoChain.push({
+                            "name": evoData.species.name,
+                        });                
+                        evoData = evoData.evolves_to[0];                    
+                    } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
+                    data.evolution_chain = evoChain;
+                    dispatch(findCurrentItem(data));
+                });
+            });            
         })
     }
 }
@@ -21,7 +37,7 @@ export function getAllPoke() {
         axios.get('https://pokeapi.co/api/v2/pokemon/?limit=50')
             .then(response => {
                 response.data.results.map((data) => {
-                    axios.get(data.url).then((response) => {
+                    axios.get(data.url).then((response) => {                        
                         arr.push(response.data);
                     });
                     dispatch(getList(arr));
