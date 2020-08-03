@@ -10,7 +10,6 @@ function Page(props) {
     const {
         text,
         onChangeText,
-        onChangeSelection,
         onGoTo
     } = props;
 
@@ -23,7 +22,6 @@ function Page(props) {
                 <Search
                     text={text}
                     onChangeText={onChangeText}
-                    onChangeSelection={onChangeSelection}
                     onGoTo={onGoTo}
                 />      
                 <AccountCircle />   

@@ -11,24 +11,8 @@ function Page(props) {
     const {
         goTo,
         currentItem,
-        item,
-        findItem,
         itemId,
-        // currentItem: { sprites: { front_default } },
-        currentItem: { sprites},
     } = props;
-
-    // console.log(currentItem);
-
-    // const [poke, setPoke] = useState(null);
-
-    // useEffect(() => {
-    //     fetch(`https://pokeapi.co/api/v2/pokemon/${itemId}/`)
-    //         .then(results => results.json())
-    //         .then(data => {
-    //             setPoke(data);
-    //         });
-    // }, []);
 
     return (
         <Fragment>

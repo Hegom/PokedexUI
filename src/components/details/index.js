@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Page from './page';
-import * as actionCreators from '../../redux/actions/findCurrentItem';
+import * as actionCreators from '../../redux/actions/';
 
 class Details extends Component {
     constructor(props) {

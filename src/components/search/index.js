@@ -7,16 +7,11 @@ import './style.css';
 class Search extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isOpen: false
-        };
     }  
 
     render() {
         const {
             onChangeText,
-            onChangeSelection,
             text,
             onGoTo
         } = this.props;    
@@ -33,15 +28,11 @@ class Search extends Component {
                     onChange={(event) => {
                         const newText = event.target.value;
                         onChangeText(newText);
-                    }}                                   
-                    onFocus={() => {
-                        onChangeSelection(text);
-                    }}
+                    }}  
                     onKeyPress={(event) => {                        
                         if (event.key === 'Enter' && text) {  
                             onGoTo(`/details/${text}`);
                             this.setState({ text: text });
-                            onChangeSelection(text);
                         }
                     }}
                 />                
